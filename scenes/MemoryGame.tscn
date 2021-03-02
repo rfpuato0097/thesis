@@ -1,0 +1,450 @@
+[gd_scene format=2]
+
+[node name="MemoryGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuestionAreaBG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -270.0
+color = Color( 0.545098, 0.34902, 0.34902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilesAreaBG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 90.0
+color = Color( 0.623529, 0.0156863, 0.0156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VerticalContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 640, 360 )
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuestionsArea" type="HBoxContainer" parent="VerticalContainer"]
+margin_right = 640.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 640, 90 )
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbyInfoContainer" type="VBoxContainer" parent="VerticalContainer/QuestionsArea"]
+margin_right = 160.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VerticalContainer/QuestionsArea/LobbyInfoContainer"]
+margin_right = 160.0
+margin_bottom = 14.0
+text = "This is the lobby info"
+
+[node name="QuestionsContainer" type="CenterContainer" parent="VerticalContainer/QuestionsArea"]
+margin_left = 160.0
+margin_right = 480.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 320, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Questions" type="Label" parent="VerticalContainer/QuestionsArea/QuestionsContainer"]
+margin_left = 75.0
+margin_top = 38.0
+margin_right = 244.0
+margin_bottom = 52.0
+text = "This is the Questions Area"
+
+[node name="MarginContainer" type="MarginContainer" parent="VerticalContainer/QuestionsArea"]
+margin_left = 480.0
+margin_right = 640.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VerticalContainer/QuestionsArea/MarginContainer"]
+margin_left = 148.0
+margin_right = 160.0
+margin_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnswersArea" type="CenterContainer" parent="VerticalContainer"]
+margin_top = 90.0
+margin_right = 640.0
+margin_bottom = 360.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="TileGrid" type="GridContainer" parent="VerticalContainer/AnswersArea"]
+margin_left = 168.0
+margin_top = 15.0
+margin_right = 472.0
+margin_bottom = 255.0
+custom_constants/vseparation = 16
+custom_constants/hseparation = 16
+columns = 4
+
+[node name="Tile1" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_right = 64.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile1"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile1"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile2" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 80.0
+margin_right = 144.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile2"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile2"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile3" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 160.0
+margin_right = 224.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile3"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile3"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile4" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 240.0
+margin_right = 304.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile4"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile4"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile5" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_top = 64.0
+margin_right = 64.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile5"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile5"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile6" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 80.0
+margin_top = 64.0
+margin_right = 144.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile6"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile6"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile7" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 160.0
+margin_top = 64.0
+margin_right = 224.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile7"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile7"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile8" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 240.0
+margin_top = 64.0
+margin_right = 304.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile8"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile8"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile9" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_top = 128.0
+margin_right = 64.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile9"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile9"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile10" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 80.0
+margin_top = 128.0
+margin_right = 144.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile10"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile10"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile11" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 160.0
+margin_top = 128.0
+margin_right = 224.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile11"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile11"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile12" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 240.0
+margin_top = 128.0
+margin_right = 304.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile12"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile12"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile13" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_top = 192.0
+margin_right = 64.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile13"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile13"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile14" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 80.0
+margin_top = 192.0
+margin_right = 144.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile14"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile14"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile15" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 160.0
+margin_top = 192.0
+margin_right = 224.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile15"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile15"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile16" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+margin_left = 240.0
+margin_top = 192.0
+margin_right = 304.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 64, 48 )
+
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile16"]
+margin_right = 64.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile16"]
+margin_right = 64.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
