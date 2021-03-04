@@ -6,6 +6,7 @@ var questions = []
 var isSendData = true
 var payload = []
 onready var wordsPopup = $AddtlWordsPopup
+onready var savePopup = $SavePopup
 
 func _ready():
 	pass # Replace with function body.
@@ -53,14 +54,6 @@ func _on_CreateGameButton_pressed():
 	#print (json)
 
 
-func _on_ExportButton_pressed():
-	pass # Replace with function body.
-
-
-func _on_ImportButton_pressed():
-	pass # Replace with function body.
-
-
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://scenes/MainMenu.tscn")
 
@@ -79,3 +72,29 @@ func _on_Ok_pressed():
 
 func _on_AddtlWordsPopup_hide():
 	isSendData = true
+
+
+func _on_SaveButton_pressed():
+	savePopup.show()
+
+func _on_LoadButton_pressed():
+	#Check Files
+	#List Files
+	#Pick File
+	#Load
+	pass
+
+
+func _on_ConfirmSave_pressed():
+	var save_file = File.new()
+	var saveName = $SavePopup/VBoxContainer/HBoxContainer/SaveNameInput.get_text()
+	saveName = "user://" + saveName + ".save"
+	save_file.open(saveName, File.WRITE)
+	
+	var savedQuestions = []
+	for member in get_tree().get_nodes_in_group("QuestionsGroup"):
+		savedQuestions.append( member.collectQuestion() )
+
+	save_file.store_line(to_json(savedQuestions))
+	save_file.close()
+	savePopup.hide()
