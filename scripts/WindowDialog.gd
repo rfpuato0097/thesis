@@ -9,7 +9,6 @@ func addWords(noOfWords):
 		wordInstance.add_to_group("WordsGroup")
 
 func sendAddtlWords():
-	print(get_children())
 	for member in get_tree().get_nodes_in_group("WordsGroup"):
 		words.append(member.get_text())
 		

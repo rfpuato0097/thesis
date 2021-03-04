@@ -41,18 +41,30 @@ margin_bottom = 20.0
 size_flags_horizontal = 0
 text = "< BACK"
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 25.0
 margin_right = 600.0
 margin_bottom = 45.0
-alignment = 2
 
-[node name="SceneName" type="Label" parent="VBoxContainer/Buttons"]
+[node name="SceneName" type="Label" parent="VBoxContainer/HBoxContainer"]
 margin_top = 3.0
-margin_right = 342.0
+margin_right = 298.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "Create Game"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 472.0
+margin_right = 600.0
+margin_bottom = 20.0
+size_flags_horizontal = 10
+text = "MEMORY GAME"
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 50.0
+margin_right = 600.0
+margin_bottom = 70.0
+alignment = 2
 
 [node name="AddQuestionButton" type="Button" parent="VBoxContainer/Buttons"]
 margin_left = 346.0
@@ -68,33 +80,27 @@ margin_bottom = 20.0
 text = "REMOVE QUESTION"
 
 [node name="Buttons2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 50.0
+margin_top = 75.0
 margin_right = 600.0
-margin_bottom = 70.0
+margin_bottom = 95.0
 alignment = 2
 
 [node name="ImportButton" type="Button" parent="VBoxContainer/Buttons2"]
-margin_left = 368.0
-margin_right = 431.0
+margin_left = 472.0
+margin_right = 535.0
 margin_bottom = 20.0
 text = "IMPORT"
 
 [node name="ExportButton" type="Button" parent="VBoxContainer/Buttons2"]
-margin_left = 435.0
-margin_right = 496.0
+margin_left = 539.0
+margin_right = 600.0
 margin_bottom = 20.0
 text = "EXPORT"
 
-[node name="CreateGameButton" type="Button" parent="VBoxContainer/Buttons2"]
-margin_left = 500.0
-margin_right = 600.0
-margin_bottom = 20.0
-text = "CREATE GAME"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_top = 75.0
+margin_top = 100.0
 margin_right = 600.0
-margin_bottom = 320.0
+margin_bottom = 295.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -103,7 +109,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
 margin_right = 600.0
-margin_bottom = 245.0
+margin_bottom = 195.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -111,6 +117,15 @@ size_flags_vertical = 3
 margin_top = 0.0
 margin_bottom = 42.0
 size_flags_horizontal = 5
+
+[node name="CreateGameButton" type="Button" parent="VBoxContainer"]
+margin_top = 300.0
+margin_right = 600.0
+margin_bottom = 320.0
+text = "CREATE GAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AddtlWordsPopup" type="WindowDialog" parent="."]
 anchor_left = 0.5
@@ -184,5 +199,6 @@ __meta__ = {
 [connection signal="pressed" from="VBoxContainer/Buttons/RemoveQuestion" to="." method="_on_RemoveQuestion_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons2/ImportButton" to="." method="_on_ImportButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons2/ExportButton" to="." method="_on_ExportButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons2/CreateGameButton" to="." method="_on_CreateGameButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreateGameButton" to="." method="_on_CreateGameButton_pressed"]
+[connection signal="hide" from="AddtlWordsPopup" to="." method="_on_AddtlWordsPopup_hide"]
 [connection signal="pressed" from="AddtlWordsPopup/VBoxContainer/MarginContainer/HBoxContainer/Ok" to="." method="_on_Ok_pressed"]

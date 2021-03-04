@@ -4,6 +4,7 @@ var questionInstance = preload("res://scenes/Question.tscn")
 var counter = 2
 var questions = []
 var isSendData = true
+var payload = []
 onready var wordsPopup = $AddtlWordsPopup
 
 func _ready():
@@ -39,14 +40,17 @@ func _on_CreateGameButton_pressed():
 		isSendData = false
 		print("Not Enougn Words for Game")
 		wordsPopup.addWords(5 - questions.size())
-		wordsPopup.popup()
+		wordsPopup.show()
 
 	#Data is sent to Server.
 	if isSendData:
-		Client.send_data(questions)
+		print("Data Sent")
+		payload.append("CG")
+		payload.append(questions)
+		Client.send_data(payload)
 	
-	var json = JSON.print(questions, "\t")
-	print (json)
+	#var json = JSON.print(questions, "\t")
+	#print (json)
 
 
 func _on_ExportButton_pressed():
@@ -64,7 +68,14 @@ func _on_BackButton_pressed():
 func _on_Ok_pressed():
 	wordsPopup.sendAddtlWords()
 	isSendData = true
-	Client.send_data(questions)
-	Client.send_data(wordsPopup.words)
 	
+	payload.append("CG")
+	payload.append(questions)
+	payload.append(wordsPopup.words)
+	
+	Client.send_data(payload)
 	print( wordsPopup.words )
+
+
+func _on_AddtlWordsPopup_hide():
+	isSendData = true
