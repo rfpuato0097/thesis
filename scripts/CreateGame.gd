@@ -7,6 +7,7 @@ var isSendData = true
 var payload = []
 onready var wordsPopup = $AddtlWordsPopup
 onready var savePopup = $SavePopup
+onready var loadPopup = $LoadPopup
 
 func _ready():
 	pass # Replace with function body.
@@ -78,11 +79,7 @@ func _on_SaveButton_pressed():
 	savePopup.show()
 
 func _on_LoadButton_pressed():
-	#Check Files
-	#List Files
-	#Pick File
-	#Load
-	pass
+	loadPopup.show()
 
 
 func _on_ConfirmSave_pressed():
@@ -98,3 +95,28 @@ func _on_ConfirmSave_pressed():
 	save_file.store_line(to_json(savedQuestions))
 	save_file.close()
 	savePopup.hide()
+
+
+func _on_LoadPopup_file_selected(path):
+	var load_file = File.new()
+	load_file.open(path,File.READ)
+	
+	var savedQuestions = parse_json(load_file.get_line())
+	
+	#Removes the previous questions
+	var node = get_node("VBoxContainer/ScrollContainer/VBoxContainer")
+	for child in node.get_children():
+		node.remove_child(child)
+		child.queue_free()
+	
+	#Add questions
+	counter = 1
+	for question in savedQuestions:
+		var q = questionInstance.instance()
+		q.questionNo = counter
+		q.questionInput = question[0]
+		q.answerInput = question[1]
+		counter += 1
+		get_node("VBoxContainer/ScrollContainer/VBoxContainer").add_child(q)
+		
+	loadPopup.hide()
