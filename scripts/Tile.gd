@@ -12,6 +12,7 @@ func _ready():
 	labelNode = self.get_child(1)
 	
 	buttonNode.connect("pressed", self, "_button_pressed")
+	buttonNode.set_toggle_mode(true)
 	labelNode.set_text("HELLO")
 	
 	MemoryGame = get_node("../../../..")

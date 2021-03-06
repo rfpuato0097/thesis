@@ -6,6 +6,10 @@ onready var tileGrid = $VerticalContainer/AnswersArea/TileGrid
 var questions = []
 var usedQuestions = []
 var words = []
+var question
+var answer
+var wordsInTiles = []
+var tempWords
 var flip = true
 var flipCounter = 0
 var timer
@@ -13,6 +17,8 @@ var displayTimer = true
 var rng = RandomNumberGenerator.new()
 var tiles
 var clickedTile
+var disabledTiles = false
+var playerAnswer
 
 func _ready():
 	tiles = tileGrid.get_children()
@@ -23,22 +29,21 @@ func _ready():
 	words = [ "a5", "a6" ]
 	
 	#Get Words for tiles.
-	for question in questions:
-		words.append( question[1] )
+	for q in questions:
+		words.append( q[1] )
 	
 	#5 sec. Countdown at Questions Area
-	gameTimer(5, "_game_start",false)
-	
-	#Start 15sec timer. Flip tiles.
-	#Show Question Start 15sec timer
-	
-	pass
-	
+	gameTimer(5, "_game_start")
+
 	
 func _process(delta):
 	if(timer.get_time_left() > 0 and displayTimer):
 		questionsArea.set_text( str(round(timer.get_time_left())) )
-		pass
+	
+	if clickedTile and !disabledTiles:
+		for tile in tiles:
+			if clickedTile != tile:
+				tile.buttonNode.set_pressed(false)
 
 
 func gameTimer(secs, method, oneShot=true):
@@ -51,27 +56,25 @@ func gameTimer(secs, method, oneShot=true):
 	timer.start()
 
 func _game_start():
-	timer.stop()
-	
-	#Pick Question
-	var question
-	var answer
 	if questions:
-		print("Game Starting")
-		question = questions.pop_front()
-		usedQuestions.append(question)
-		answer = question[1]
-		question = question[0]
+		pickQuestion()
+		prepareTiles()
+		memorizePhase()
 	else:
-		#end game
-		return
-	
-	print("QUESTION: " + question)
-	print("ANSWER: " + answer)
-	
-	#Place words at tiles.
-	var wordsInTiles = []
-	var tempWords = words.duplicate(true)
+		#Game End
+		pass
+
+func pickQuestion():
+	print("pickQuestion")
+	question = questions.pop_front()
+	usedQuestions.append(question)
+	answer = question[1]
+	question = question[0]
+
+
+func prepareTiles():
+	print("prepareTiles")
+	tempWords = words.duplicate(true)
 	wordsInTiles.append(answer)
 	tempWords.erase(answer)
 	randomize()
@@ -82,14 +85,18 @@ func _game_start():
 
 	for tile in tiles:
 		tile.text = wordsInTiles[ rng.randi_range(0, 5) ]
-		
-	gameTimer(3, "flipTiles", false)
 	
+	for tile in tiles:
+		tile.buttonNode.set_disabled(disabledTiles)
+
 func flipTiles():
 	rng.randomize()
 	if flipCounter == 5:
 		flipCounter = 0
 		timer.stop()
+		for tile in tiles:
+			tile.hideTile()
+		gameTimer(0.1, "answerPhase")
 		return
 	else:
 		flipCounter = flipCounter + 1
@@ -100,3 +107,30 @@ func flipTiles():
 			tile.showTile()
 		else:
 			tile.hideTile()
+
+func memorizePhase():
+	print("memorizePhase")
+	displayTimer = false
+	questionsArea.set_text("Remember the Tiles")
+	flipTiles()
+	gameTimer(3, "flipTiles", false)
+
+func answerPhase():
+	print("answerPhase")
+	for tile in tiles:
+		tile.buttonNode.set_disabled(false)
+	questionsArea.set_text(question)
+	gameTimer(5, "resultPhase")
+	
+func resultPhase():
+	print("resultPhase")
+	for tile in tiles:
+		tile.showTile()
+		tile.buttonNode.set_disabled(true)
+	if clickedTile:
+		playerAnswer = clickedTile.text
+	if playerAnswer == answer:
+		print("Correct")
+	else:
+		print("Wrong")
+	gameTimer(2, "_game_start")
