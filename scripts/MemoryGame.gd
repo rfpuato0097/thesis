@@ -7,6 +7,7 @@ var questions = []
 var usedQuestions = []
 var words = []
 var flip = true
+var flipCounter = 0
 var timer
 var displayTimer = true
 var rng = RandomNumberGenerator.new()
@@ -26,7 +27,7 @@ func _ready():
 		words.append( question[1] )
 	
 	#5 sec. Countdown at Questions Area
-	gameTimer(2, "_game_start",false)
+	gameTimer(5, "_game_start",false)
 	
 	#Start 15sec timer. Flip tiles.
 	#Show Question Start 15sec timer
@@ -35,7 +36,7 @@ func _ready():
 	
 	
 func _process(delta):
-	if(timer.get_time_left() > 0):
+	if(timer.get_time_left() > 0 and displayTimer):
 		questionsArea.set_text( str(round(timer.get_time_left())) )
 		pass
 
@@ -86,6 +87,14 @@ func _game_start():
 	
 func flipTiles():
 	rng.randomize()
+	if flipCounter == 5:
+		flipCounter = 0
+		timer.stop()
+		return
+	else:
+		flipCounter = flipCounter + 1
+		print("Flips: " + str(flipCounter))
+	
 	for tile in tiles:
 		if rng.randi_range(0, 1) == 1:
 			tile.showTile()
