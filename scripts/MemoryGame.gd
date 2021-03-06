@@ -1,16 +1,21 @@
 extends Control
 
-var questions = []
-var usedQuestions = []
-var words = []
-var timer
-var displayTimer = true
-var rng = RandomNumberGenerator.new()
-
 onready var questionsArea = $VerticalContainer/QuestionsArea/QuestionsContainer/Questions
 onready var tileGrid = $VerticalContainer/AnswersArea/TileGrid
 
+var questions = []
+var usedQuestions = []
+var words = []
+var flip = true
+var timer
+var displayTimer = true
+var rng = RandomNumberGenerator.new()
+var tiles
+var clickedTile
+
 func _ready():
+	tiles = tileGrid.get_children()
+	
 	#Receive Questions from Server
 	#Temporary Values for testing. Server will be set up later.
 	questions = [ ["q1","a1"], ["q2","a2"], ["q3","a3"], ["q4","a4"] ]
@@ -45,6 +50,8 @@ func gameTimer(secs, method, oneShot=true):
 	timer.start()
 
 func _game_start():
+	timer.stop()
+	
 	#Pick Question
 	var question
 	var answer
@@ -56,7 +63,6 @@ func _game_start():
 		question = question[0]
 	else:
 		#end game
-		timer.stop()
 		return
 	
 	print("QUESTION: " + question)
@@ -73,8 +79,15 @@ func _game_start():
 	for i in range(5):
 		wordsInTiles.append( tempWords.pop_front() )
 
-
-	var tiles = tileGrid.get_children()
 	for tile in tiles:
-		tile.text = wordsInTiles[ rng.randf_range(0, 6) ]
-		tile.showTile()
+		tile.text = wordsInTiles[ rng.randi_range(0, 5) ]
+		
+	gameTimer(3, "flipTiles", false)
+	
+func flipTiles():
+	rng.randomize()
+	for tile in tiles:
+		if rng.randi_range(0, 1) == 1:
+			tile.showTile()
+		else:
+			tile.hideTile()
