@@ -26,13 +26,16 @@ var wrongQuestions = []
 
 func _ready():
 	tiles = tileGrid.get_children()
-	
 	#Receive Data from Server
+	questions = Client.questions
+	words = Client.words
+	playerName = Client.player_name
 	#Temporary Values for testing. Server will be set up later.
-	questions = [ ["q1","a1"], ["q2","a2"], ["q3","a3"], ["q4","a4"] ]
-	words = [ "a5", "a6" ]
+	#questions = [ ["q1","a1"], ["q2","a2"], ["q3","a3"], ["q4","a4"] ]
+	#words = [ "a5", "a6" ]
+	#playerName = "Monra"
+	
 	questionTotal = questions.size()
-	playerName = "Monra"
 	
 	#Get Words for tiles.
 	for q in questions:
@@ -74,6 +77,7 @@ func _question_start():
 	else:
 		#Game End
 		#Send result to server here.
+		Client.send_data(["GR", playerName, correctQuestions, wrongQuestions])
 		pass
 
 func pickQuestion():
@@ -89,17 +93,18 @@ func prepareTiles():
 	tempWords = words.duplicate(true)
 	wordsInTiles.append(answer)
 	tempWords.erase(answer)
-	randomize()
+	rng.randomize()
 	tempWords.shuffle()
 
 	for i in range(5):
 		wordsInTiles.append( tempWords.pop_front() )
 
-	for tile in tiles:
+	for tile in tiles: #Improve this later
 		tile.text = wordsInTiles[ rng.randi_range(0, 5) ]
 	
 	for tile in tiles:
 		tile.buttonNode.set_disabled(true)
+		tile.buttonNode.set_pressed(false)
 
 func flipTiles():
 	rng.randomize()

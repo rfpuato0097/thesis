@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://scripts/JoinGamePopup.gd" type="Script" id=2]
+[ext_resource path="res://scripts/CheckGamePopup.gd" type="Script" id=3]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -22,38 +23,57 @@ __meta__ = {
 [node name="Container" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MenuContainer" type="VBoxContainer" parent="Container"]
-margin_right = 320.0
-margin_bottom = 360.0
-rect_min_size = Vector2( 320, 360 )
+margin_right = 206.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 0
+size_flags_stretch_ratio = 0.5
+custom_constants/separation = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="Container/MenuContainer"]
+margin_right = 206.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
 
 [node name="CreateGameButton" type="Button" parent="Container/MenuContainer"]
-margin_right = 320.0
-margin_bottom = 180.0
+margin_top = 167.0
+margin_right = 206.0
+margin_bottom = 221.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Create Game"
 
 [node name="JoinGameButton" type="Button" parent="Container/MenuContainer"]
-margin_top = 180.0
-margin_right = 320.0
-margin_bottom = 360.0
+margin_top = 226.0
+margin_right = 206.0
+margin_bottom = 280.0
 size_flags_vertical = 3
 text = "Join Game"
 
+[node name="CheckGameButton" type="Button" parent="Container/MenuContainer"]
+margin_top = 285.0
+margin_right = 206.0
+margin_bottom = 340.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Check Game"
+
 [node name="ImageContainer" type="CenterContainer" parent="Container"]
-margin_left = 320.0
-margin_right = 640.0
-margin_bottom = 360.0
-rect_min_size = Vector2( 320, 360 )
+margin_left = 206.0
+margin_right = 620.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -122,6 +142,65 @@ margin_bottom = 20.0
 size_flags_horizontal = 0
 size_flags_vertical = 2
 text = "ENTER"
+
+[node name="CheckGamePopup" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.0
+margin_top = -50.0
+margin_right = 86.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 144, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+window_title = "Check Game"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CheckGamePopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EvalCodeLabel" type="Label" parent="CheckGamePopup/VBoxContainer"]
+margin_right = 162.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 11
+text = "Evaluation Page Code"
+align = 1
+valign = 2
+
+[node name="EvalCode" type="LineEdit" parent="CheckGamePopup/VBoxContainer"]
+margin_top = 36.0
+margin_right = 162.0
+margin_bottom = 60.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EvalEnter" type="Button" parent="CheckGamePopup/VBoxContainer"]
+margin_left = 55.0
+margin_top = 70.0
+margin_right = 106.0
+margin_bottom = 90.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "ENTER"
 [connection signal="pressed" from="Container/MenuContainer/CreateGameButton" to="." method="_on_CreateGameButton_pressed"]
 [connection signal="pressed" from="Container/MenuContainer/JoinGameButton" to="." method="_on_JoinGameButton_pressed"]
+[connection signal="pressed" from="Container/MenuContainer/CheckGameButton" to="." method="_on_CheckGameButton_pressed"]
 [connection signal="pressed" from="JoinGamePopup/VBoxContainer/CenterContainer/EnterButton" to="JoinGamePopup" method="_on_EnterButton_pressed"]
+[connection signal="pressed" from="CheckGamePopup/VBoxContainer/EvalEnter" to="CheckGamePopup" method="_on_EvalEnter_pressed"]

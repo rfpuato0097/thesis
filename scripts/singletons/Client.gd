@@ -3,6 +3,19 @@ extends Node
 var _client = WebSocketClient.new()
 var _write_mode = WebSocketPeer.WRITE_MODE_BINARY
 
+var created_lobbies = []
+var lobby_id
+var lobby_name = "XXXXX"
+var evaluation_page = "XXXXX"
+var questions = []
+var words = []
+var player_name
+var score
+var total
+var correct_questions
+var wrong_questions
+var questions_for_gr
+
 func _init():
 	_client.connect("connection_established", self, "_client_connected")
 	_client.connect("connection_error", self, "_client_disconnected")
@@ -24,7 +37,42 @@ func _client_close_request(code,reason):
 	
 func _client_received():
 	var packet = _client.get_peer(1).get_packet()
+	var received = Utils.decode_data(packet)
 	Utils._log("Received data: %s" % [Utils.decode_data(packet)])
+	
+	if received[0] == "CG":
+		print("Game successfully created")
+		lobby_id = received[1]
+		lobby_name = str(lobby_id) + received[2]
+		evaluation_page = str(lobby_id) + received[3]
+		created_lobbies.append([lobby_id, lobby_name, evaluation_page])
+		
+		get_tree().change_scene("res://scenes/Evaluation.tscn")
+	
+	if received[0] == "JG":
+		print("Joining game")
+		questions = []
+		words = []
+		print(received)
+		for q in received[1]:
+			questions.append( [q["question"], q["answer"]] )
+		for w in received[2]:
+			words.append( w["word"] )
+		player_name = received[3]
+		
+		get_tree().change_scene("res://scenes/MemoryGame.tscn")
+	
+	if received[0] == "GR":
+		score = received[1]
+		total = received[2]
+		correct_questions = received[3]
+		wrong_questions = received[4]
+		questions_for_gr = received[5]
+		
+		get_tree().change_scene("res://scenes/GameResults.tscn")
+		
+	if received[0] == "EV":
+		get_tree().change_scene("res://scenes/Evaluation.tscn")
 
 func _exit_tree():
 	_client.disconnect_from_host(1001, "Bye bye!")

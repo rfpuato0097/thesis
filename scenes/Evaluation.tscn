@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/Evaluation.gd" type="Script" id=1]
+
+[node name="Evaluation" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.164706, 0.286275, 0.309804, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Return" type="Button" parent="VBoxContainer"]
+margin_left = 537.0
+margin_right = 620.0
+margin_bottom = 20.0
+size_flags_horizontal = 12
+text = "Main Menu"
+
+[node name="TitlePage" type="Label" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 620.0
+margin_bottom = 38.0
+text = "Evaluation"
+align = 1
+
+[node name="Codes" type="Label" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 620.0
+margin_bottom = 73.0
+text = "Evaluation Page Code: C3301
+Lobby Code: ZETA7 "
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+margin_top = 77.0
+margin_right = 620.0
+margin_bottom = 340.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer"]
+margin_right = 620.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+text = "Game Summary:
+     <text>
+
+<Class Average>
+<Most Difficult Questions>
+<Students that need attention>
+..."
+[connection signal="pressed" from="VBoxContainer/Return" to="." method="_on_Return_pressed"]

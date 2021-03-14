@@ -46,10 +46,10 @@ func _on_CreateGameButton_pressed():
 
 	#Data is sent to Server.
 	if isSendData:
-		print("Data Sent")
 		payload.append("CG")
 		payload.append(questions)
 		Client.send_data(payload)
+		print("Data Sent")
 	
 	#var json = JSON.print(questions, "\t")
 	#print (json)
@@ -68,7 +68,7 @@ func _on_Ok_pressed():
 	payload.append(wordsPopup.words)
 	
 	Client.send_data(payload)
-	print( wordsPopup.words )
+	print(payload)
 
 
 func _on_AddtlWordsPopup_hide():

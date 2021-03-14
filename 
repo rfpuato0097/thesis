@@ -1,0 +1,55 @@
+[33mcommit 3ab0b87b8b32a6f27f4cc53ac7adcf6a51015d17[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Sat Mar 6 23:48:03 2021 +0800
+
+    Memory Game. Mostly done. Game is playable.
+
+[33mcommit e43d5d67fa78309acef70e3d909c33240f3adb03[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Sat Mar 6 21:38:45 2021 +0800
+
+    Memory Game. Tile Flip?
+
+[33mcommit bb5b69a5b63dca961da34014decc1ce6922f0823[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Sat Mar 6 18:05:07 2021 +0800
+
+    Memory Game. Tile Flips
+
+[33mcommit d574a9326d3810ddb585d005856f6a0887bb28bf[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Sat Mar 6 15:45:14 2021 +0800
+
+    Memory Game. Setting up questions and answers partially done?
+
+[33mcommit 20d343537d152e66f5e8443e50eb08acc4a121a6[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Thu Mar 4 23:55:03 2021 +0800
+
+    Load Questions done. Create Game done.
+
+[33mcommit 444c02292e3879c394aeaa2e14dd3fc68699506e[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Thu Mar 4 21:35:06 2021 +0800
+
+    Save Questions in Create Game done.
+
+[33mcommit 369879d406880d0a0991f5f96b38386b8e739ed8[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Thu Mar 4 19:30:36 2021 +0800
+
+    Create Game mostly done.
+    
+    Left: Import and Export button.
+
+[33mcommit 128bee9a8482bbac3b486ee8c76224c99f4f187a[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Wed Mar 3 03:06:56 2021 +0800
+
+    Initial project files
+
+[33mcommit 34b5e53bf51ef1deba5ec92f640cf4fb2416d6f5[m
+Author: Cardo <ricardopuatoiii@gmail.com>
+Date:   Wed Mar 3 03:02:00 2021 +0800
+
+    Initial commit
