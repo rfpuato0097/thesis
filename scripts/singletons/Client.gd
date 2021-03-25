@@ -16,6 +16,16 @@ var correct_questions
 var wrong_questions
 var questions_for_gr
 
+#analytics
+var player_count
+var average_score
+var difficult_questions
+var students_low
+var easy_questions
+var students_high
+var players_results
+var questions_resutls
+
 func _init():
 	_client.connect("connection_established", self, "_client_connected")
 	_client.connect("connection_error", self, "_client_disconnected")
@@ -47,7 +57,7 @@ func _client_received():
 		evaluation_page = str(lobby_id) + received[3]
 		created_lobbies.append([lobby_id, lobby_name, evaluation_page])
 		
-		get_tree().change_scene("res://scenes/Evaluation.tscn")
+		get_tree().change_scene("res://scenes/MainMenu.tscn")
 	
 	if received[0] == "JG":
 		print("Joining game")
@@ -72,6 +82,19 @@ func _client_received():
 		get_tree().change_scene("res://scenes/GameResults.tscn")
 		
 	if received[0] == "EV":
+		var analytics = received[1]
+		lobby_name = received[2]
+		evaluation_page = received[3]
+		
+		player_count = analytics[0][0]["player_count"]
+		average_score = analytics[1][0]["average"]
+		difficult_questions = analytics[2]
+		students_low = analytics[3]
+		easy_questions = analytics[4]
+		students_high = analytics[5]
+		players_results = analytics[6]
+		questions_resutls = analytics[7]
+		
 		get_tree().change_scene("res://scenes/Evaluation.tscn")
 
 func _exit_tree():

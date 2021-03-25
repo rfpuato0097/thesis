@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/Evaluation.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Panel.gd" type="Script" id=2]
 
 [node name="Evaluation" type="Control"]
 anchor_right = 1.0
@@ -14,8 +15,11 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.164706, 0.286275, 0.309804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -26,21 +30,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Return" type="Button" parent="VBoxContainer"]
+[node name="Return" type="Button" parent="VBox"]
 margin_left = 537.0
 margin_right = 620.0
 margin_bottom = 20.0
 size_flags_horizontal = 12
 text = "Main Menu"
 
-[node name="TitlePage" type="Label" parent="VBoxContainer"]
+[node name="TitlePage" type="Label" parent="VBox"]
 margin_top = 24.0
 margin_right = 620.0
 margin_bottom = 38.0
 text = "Evaluation"
 align = 1
 
-[node name="Codes" type="Label" parent="VBoxContainer"]
+[node name="Codes" type="Label" parent="VBox"]
 margin_top = 42.0
 margin_right = 620.0
 margin_bottom = 73.0
@@ -51,15 +55,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
 margin_top = 77.0
 margin_right = 620.0
 margin_bottom = 340.0
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer"]
+[node name="VBox" type="VBoxContainer" parent="VBox/ScrollContainer"]
 margin_right = 620.0
-margin_bottom = 116.0
+margin_bottom = 263.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ExpandPanel" type="Panel" parent="VBox/ScrollContainer/VBox"]
+margin_right = 620.0
+margin_bottom = 143.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="VBox/ScrollContainer/VBox/ExpandPanel"]
+margin_right = 620.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Analytics" type="Label" parent="VBox/ScrollContainer/VBox"]
+margin_top = 147.0
+margin_right = 620.0
+margin_bottom = 263.0
 size_flags_horizontal = 3
 text = "Game Summary:
      <text>
@@ -68,4 +96,5 @@ text = "Game Summary:
 <Most Difficult Questions>
 <Students that need attention>
 ..."
-[connection signal="pressed" from="VBoxContainer/Return" to="." method="_on_Return_pressed"]
+[connection signal="pressed" from="VBox/Return" to="." method="_on_Return_pressed"]
+[connection signal="gui_input" from="VBox/ScrollContainer/VBox/ExpandPanel" to="VBox/ScrollContainer/VBox/ExpandPanel" method="_on_Panel_gui_input"]

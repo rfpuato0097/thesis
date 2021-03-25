@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://scripts/JoinGamePopup.gd" type="Script" id=2]
 [ext_resource path="res://scripts/CheckGamePopup.gd" type="Script" id=3]
+[ext_resource path="res://theme/DefaultTheme.tres" type="Theme" id=4]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,6 +116,7 @@ margin_top = 18.0
 margin_right = 236.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
+clear_button_enabled = true
 
 [node name="NameLabel" type="Label" parent="JoinGamePopup/VBoxContainer"]
 margin_top = 46.0
@@ -126,6 +129,7 @@ margin_top = 64.0
 margin_right = 236.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
+clear_button_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -144,6 +148,7 @@ size_flags_vertical = 2
 text = "ENTER"
 
 [node name="CheckGamePopup" type="WindowDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -187,6 +192,7 @@ margin_top = 36.0
 margin_right = 162.0
 margin_bottom = 60.0
 align = 1
+clear_button_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
