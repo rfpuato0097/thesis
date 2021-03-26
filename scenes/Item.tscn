@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Item.gd" type="Script" id=1]
+
+[node name="Item" type="VBoxContainer"]
+margin_right = 612.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="Title" type="PanelContainer" parent="."]
+margin_right = 612.0
+margin_bottom = 28.0
+
+[node name="Label" type="Label" parent="Title"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 605.0
+margin_bottom = 21.0
+text = "AAAAAAAAAAAAAAAAA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="PanelContainer" parent="."]
+margin_top = 32.0
+margin_right = 612.0
+margin_bottom = 94.0
+
+[node name="Label" type="Label" parent="Content"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 605.0
+margin_bottom = 55.0
+text = "BBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBB"
+[connection signal="gui_input" from="Title" to="." method="_on_Title_gui_input"]
