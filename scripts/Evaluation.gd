@@ -13,18 +13,28 @@ var question_results = Client.questions_resutls
 var analytics_text = ""
 
 onready var codes_label = $VBox/Codes
-onready var analytics_summary = $VBox/ScrollContainer/TabContainer/GameSummary/Analytics
-onready var analytics_players = $VBox/ScrollContainer/TabContainer/Players/Analytics
-onready var analytics_questions = $VBox/ScrollContainer/TabContainer/Questions/Analytics
 onready var panel1 = $VBox/ScrollContainer/TabContainer/GameSummary/PanelContainer/Content
 onready var panel2 = $VBox/ScrollContainer/TabContainer/GameSummary/PanelContainer2/Content
 
 const Item = preload("res://scenes/Item.tscn")
 
+class DictionarySorter:
+	static func sort_freq_asc(a,b):
+		if a["freq"] < b["freq"]:
+			return true
+		return false
+
 func _ready():
 	codes_label.text = "Evaluation Page Code: %s\nLobby Code: %s" % [result_page_name, lobby_name]
 	panel1.text = "No. of Players: %d" % [player_count]
-	panel2.text = "Average Score: %.2f" % [average_score]
+	panel2.text = "Average Score: %.2f%%" % [(average_score * 100)]
+	var passers = 0
+	for i in student_high.size():
+		if int(student_high[i]["correct_ans"]) > (0.60 * question_results.size()):
+			passers = passers + 1
+			print(passers)
+	panel2.text = panel2.text + "\nPassing Rate: %.2f%%" % [ (float(passers)/float(student_high.size()))*float(100) ]
+
 
 
 	var item_instance = Item.instance()
@@ -48,11 +58,11 @@ func _ready():
 	get_node("VBox/ScrollContainer/TabContainer/GameSummary").add_child(item_instance)
 	
 	item_instance = Item.instance()
-	item_instance.title = "Easiest Questions:"
+	item_instance.title = "Easy Questions:"
 	analytics_text = ""
-	#more than 60% of students got it correct
+	#more than 80% of students got it correct
 	for i in easy_questions.size():
-		if int(easy_questions[i]["no_of_correct"]) > (0.60 * players_results.size()):
+		if int(easy_questions[i]["no_of_correct"]) > (0.80 * players_results.size()):
 			analytics_text = analytics_text + "    Question: %s\n        No. of correct answers: %d\n" % [easy_questions[i]["question"], easy_questions[i]["no_of_correct"]]
 	item_instance.content = analytics_text
 	get_node("VBox/ScrollContainer/TabContainer/GameSummary").add_child(item_instance)
@@ -78,10 +88,10 @@ func _ready():
 		for j in i:
 			if j["correct"] == 1:
 				score = score + 1
-				analytics_text = analytics_text + "    Question: %s\n        Correct? YES.\n" % [j["question"]]
+				analytics_text = analytics_text + "\n    Question: %s\n        Correct Answer: %s\n        Player Answer: %s" % [j["question"], j["answer"], j["player_answer"]]
 			else:
-				analytics_text = analytics_text + "    Question: %s\n        Correct? NO.\n" % [j["question"]]
-		analytics_text = analytics_text + "Score: %d/%d" % [score, question_results.size()]
+				analytics_text = analytics_text + "\n    Question: %s\n        Correct Answer: %s\n        Player Answer: %s" % [j["question"], j["answer"], j["player_answer"]]
+		analytics_text = "Score: %d/%d" % [score, question_results.size()] + analytics_text
 		item_instance.content = analytics_text
 		get_node("VBox/ScrollContainer/TabContainer/Players").add_child(item_instance)
 
@@ -91,13 +101,29 @@ func _ready():
 		item_instance.title = "Question: %s" % [i[0]["question"]]
 		analytics_text = ""
 		var score = 0
+		var freq = {}
 		for j in i:
+			if freq.has(j["player_answer"]):
+				freq[j["player_answer"]] = freq[j["player_answer"]] + 1
+			else:
+				freq[j["player_answer"]] = 1
+
 			if j["correct"] == 1:
 				score = score + 1
-				analytics_text = analytics_text + "        Player: %s\n            Correct? YES.\n" % [j["player_name"]]
+				analytics_text = analytics_text + "\nPlayer: %s\n        Answer: %s\n        Correct? YES" % [j["player_name"], j["player_answer"]]
 			else:
-				analytics_text = analytics_text + "        Player: %s\n            Correct? NO.\n" % [j["player_name"]]
-		analytics_text = analytics_text + "Score: %d/%d" % [score, players_results.size()]
+				analytics_text = analytics_text + "\nPlayer: %s\n        Answer: %s\n        Correct? NO" % [j["player_name"], j["player_answer"]]
+		
+		var freqArray = []
+		for x in freq:
+			freqArray.append( {"answer": x, "freq": freq[x]} )
+		freqArray.sort_custom(DictionarySorter, "sort_freq_asc")
+		print(freqArray)
+		
+		for l in freqArray:
+			analytics_text = "    %s : %d\n" % [l["answer"], l["freq"]] + analytics_text
+		analytics_text = "Answers Frequency: \n" + analytics_text
+		analytics_text = "Correct Answer: %s\nScore: %d/%d\n" % [i[0]["answer"], score, players_results.size()] + analytics_text
 		item_instance.content = analytics_text
 		get_node("VBox/ScrollContainer/TabContainer/Questions").add_child(item_instance)
 

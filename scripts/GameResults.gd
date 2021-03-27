@@ -18,13 +18,13 @@ func _ready():
 	
 	for c in correct_questions:
 		for q in questions:
-			if c == q["question"]:
+			if c["question"] == q["question"]:
 				correctText = correctText + ("%s:%s\n" % [ q["question"], q["answer"] ])
 
 	for w in wrong_questions:
 		for q in questions:
-			if w == q["question"]:
-				wrongText = wrongText + ("%s:%s\n" % [ q["question"], q["answer"] ])
+			if w["question"] == q["question"]:
+				wrongText = wrongText + ("%s:%s\n    Your Answer: %s\n" % [ q["question"], q["answer"], w["player_answer"] ])
 
 	correctQuestions.set_text(correctText)
 	wrongQuestions.set_text(wrongText)

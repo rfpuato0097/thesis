@@ -99,8 +99,19 @@ func prepareTiles():
 	for i in range(5):
 		wordsInTiles.append( tempWords.pop_front() )
 
-	for tile in tiles: #Improve this later
-		tile.text = wordsInTiles[ rng.randi_range(0, 5) ]
+	var ansCount = 0
+	var repeatTiles = true
+	while(repeatTiles):
+		for tile in tiles: #
+			tile.text = wordsInTiles[ rng.randi_range(0, 5) ]
+			if tile.text == answer:
+				ansCount = ansCount + 1
+		if ansCount >= 3:
+			repeatTiles = false
+		ansCount = 0
+		#print(tiles)
+	#print("\nTILES\n")
+	
 	
 	for tile in tiles:
 		tile.buttonNode.set_disabled(true)
@@ -152,8 +163,9 @@ func resultPhase():
 	if playerAnswer == answer:
 		print("Correct")
 		playerScore = playerScore + 1
-		correctQuestions.append(question)
+		correctQuestions.append( {"question":question, "player_answer": playerAnswer} )
+		#correctQuestions.append(question)
 	else:
 		print("Wrong")
-		wrongQuestions.append(question)
+		wrongQuestions.append( {"question":question, "player_answer": playerAnswer} )
 	gameTimer(2, "_question_start")

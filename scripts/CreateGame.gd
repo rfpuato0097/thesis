@@ -17,14 +17,14 @@ func _on_AddQuestionButton_pressed():
 	var q = questionInstance.instance()
 	q.questionNo = counter
 	counter += 1
-	get_node("VBoxContainer/ScrollContainer/VBoxContainer").add_child(q)
+	get_node("VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer").add_child(q)
 	print("Adding Question")
 
 
 func _on_RemoveQuestion_pressed():
-	var lastChild = $VBoxContainer/ScrollContainer/VBoxContainer.get_child_count()
+	var lastChild = $VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer.get_child_count()
 	if lastChild > 1:
-		lastChild = $VBoxContainer/ScrollContainer/VBoxContainer.get_child(lastChild-1)
+		lastChild = $VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer.get_child(lastChild-1)
 		print(lastChild)
 		lastChild.queue_free()
 		counter -= 1
@@ -104,7 +104,7 @@ func _on_LoadPopup_file_selected(path):
 	var savedQuestions = parse_json(load_file.get_line())
 	
 	#Removes the previous questions
-	var node = get_node("VBoxContainer/ScrollContainer/VBoxContainer")
+	var node = get_node("VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer")
 	for child in node.get_children():
 		node.remove_child(child)
 		child.queue_free()
@@ -117,6 +117,6 @@ func _on_LoadPopup_file_selected(path):
 		q.questionInput = question[0]
 		q.answerInput = question[1]
 		counter += 1
-		get_node("VBoxContainer/ScrollContainer/VBoxContainer").add_child(q)
+		get_node("VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer").add_child(q)
 		
 	loadPopup.hide()
