@@ -56,8 +56,9 @@ func _client_received():
 		lobby_name = str(lobby_id) + received[2]
 		evaluation_page = str(lobby_id) + received[3]
 		created_lobbies.append([lobby_id, lobby_name, evaluation_page])
+		#save lobbies into resource
 		
-		get_tree().change_scene("res://scenes/MainMenu.tscn")
+		get_tree().change_scene("res://scenes/LobbyCode.tscn")
 	
 	if received[0] == "JG":
 		print("Joining game")

@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/LobbyCode.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,15 +47,22 @@ margin_right = 613.0
 margin_bottom = 309.0
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
 margin_right = 606.0
-margin_bottom = 31.0
+margin_bottom = 45.0
+
+[node name="Code" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 599.0
+margin_bottom = 38.0
 text = "Lobby Code:
 Evaluation Page Code:"
-align = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 51.0
+[node name="Info" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 65.0
 margin_right = 606.0
-margin_bottom = 65.0
+margin_bottom = 79.0
 text = "Information, Tutorial, Reminders here."
+autowrap = true
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]

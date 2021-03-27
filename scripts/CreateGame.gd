@@ -81,22 +81,6 @@ func _on_SaveButton_pressed():
 func _on_LoadButton_pressed():
 	loadPopup.show()
 
-
-func _on_ConfirmSave_pressed():
-	var save_file = File.new()
-	var saveName = $SavePopup/VBoxContainer/HBoxContainer/SaveNameInput.get_text()
-	saveName = "user://" + saveName + ".save"
-	save_file.open(saveName, File.WRITE)
-	
-	var savedQuestions = []
-	for member in get_tree().get_nodes_in_group("QuestionsGroup"):
-		savedQuestions.append( member.collectQuestion() )
-
-	save_file.store_line(to_json(savedQuestions))
-	save_file.close()
-	savePopup.hide()
-
-
 func _on_LoadPopup_file_selected(path):
 	var load_file = File.new()
 	load_file.open(path,File.READ)
@@ -120,3 +104,17 @@ func _on_LoadPopup_file_selected(path):
 		get_node("VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer").add_child(q)
 		
 	loadPopup.hide()
+
+
+func _on_SavePopup_file_selected(path):
+	var save_file = File.new()
+	var saveName = path.get_basename() + ".save"
+	save_file.open(saveName, File.WRITE)
+	
+	var savedQuestions = []
+	for member in get_tree().get_nodes_in_group("QuestionsGroup"):
+		savedQuestions.append( member.collectQuestion() )
+
+	save_file.store_line(to_json(savedQuestions))
+	save_file.close()
+	savePopup.hide()

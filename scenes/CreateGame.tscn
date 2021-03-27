@@ -120,6 +120,7 @@ margin_right = 593.0
 margin_bottom = 188.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 3
 
 [node name="Question" parent="VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 0.0
@@ -204,63 +205,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SavePopup" type="WindowDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -160.0
-margin_top = -32.0
-margin_right = 160.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 320, 64 )
-window_title = "Save Questions"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SavePopup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 5.0
-margin_right = -10.0
-margin_bottom = -5.0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SavePopup/VBoxContainer"]
-margin_right = 300.0
-margin_bottom = 24.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SaveText" type="Label" parent="SavePopup/VBoxContainer/HBoxContainer"]
-margin_right = 74.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "File Name:"
-align = 1
-valign = 1
-
-[node name="SaveNameInput" type="LineEdit" parent="SavePopup/VBoxContainer/HBoxContainer"]
-margin_left = 78.0
-margin_right = 300.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-
-[node name="ConfirmSave" type="Button" parent="SavePopup/VBoxContainer"]
-margin_top = 34.0
-margin_right = 300.0
-margin_bottom = 54.0
-text = "Save"
-
 [node name="LoadPopup" type="FileDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -279,6 +223,20 @@ current_path = "/Users/Cardo/Documents/Godot/Prototype_Game/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SavePopup" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -100.0
+margin_right = 200.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 200 )
+access = 2
+current_dir = "/Users/Cardo/Documents/Godot/Prototype_Game"
+current_path = "/Users/Cardo/Documents/Godot/Prototype_Game/"
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/AddQuestionButton" to="." method="_on_AddQuestionButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/RemoveQuestion" to="." method="_on_RemoveQuestion_pressed"]
@@ -287,5 +245,5 @@ __meta__ = {
 [connection signal="pressed" from="VBoxContainer/CreateGameButton" to="." method="_on_CreateGameButton_pressed"]
 [connection signal="hide" from="AddtlWordsPopup" to="." method="_on_AddtlWordsPopup_hide"]
 [connection signal="pressed" from="AddtlWordsPopup/VBoxContainer/MarginContainer/HBoxContainer/Ok" to="." method="_on_Ok_pressed"]
-[connection signal="pressed" from="SavePopup/VBoxContainer/ConfirmSave" to="." method="_on_ConfirmSave_pressed"]
 [connection signal="file_selected" from="LoadPopup" to="." method="_on_LoadPopup_file_selected"]
+[connection signal="file_selected" from="SavePopup" to="." method="_on_SavePopup_file_selected"]
