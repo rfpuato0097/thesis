@@ -148,7 +148,6 @@ size_flags_vertical = 2
 text = "ENTER"
 
 [node name="CheckGamePopup" type="WindowDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

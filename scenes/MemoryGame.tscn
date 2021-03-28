@@ -11,19 +11,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuestionAreaBG" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -270.0
-color = Color( 0.545098, 0.34902, 0.34902, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TilesAreaBG" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 90.0
 color = Color( 0.623529, 0.0156863, 0.0156863, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,16 +22,19 @@ __meta__ = {
 [node name="VerticalContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 640, 360 )
+margin_left = 10.0
+margin_top = 20.0
+margin_right = -10.0
+margin_bottom = -10.0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="QuestionsArea" type="HBoxContainer" parent="VerticalContainer"]
-margin_right = 640.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 640, 90 )
+margin_right = 620.0
+margin_bottom = 87.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
 __meta__ = {
@@ -49,77 +42,105 @@ __meta__ = {
 }
 
 [node name="LobbyInfoContainer" type="VBoxContainer" parent="VerticalContainer/QuestionsArea"]
-margin_right = 160.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 160, 0 )
+margin_right = 155.0
+margin_bottom = 87.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LobbyInfo" type="Label" parent="VerticalContainer/QuestionsArea/LobbyInfoContainer"]
-margin_right = 160.0
+margin_right = 155.0
 margin_bottom = 14.0
 text = "This is the lobby info"
 
-[node name="QuestionsContainer" type="CenterContainer" parent="VerticalContainer/QuestionsArea"]
-margin_left = 160.0
-margin_right = 480.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 320, 0 )
+[node name="PanelContainer" type="PanelContainer" parent="VerticalContainer/QuestionsArea"]
+margin_left = 155.0
+margin_right = 465.0
+margin_bottom = 87.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="QuestionsContainer" type="CenterContainer" parent="VerticalContainer/QuestionsArea/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 303.0
+margin_bottom = 80.0
+grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Questions" type="Label" parent="VerticalContainer/QuestionsArea/QuestionsContainer"]
-margin_left = 75.0
-margin_top = 38.0
-margin_right = 244.0
-margin_bottom = 52.0
+[node name="Questions" type="Label" parent="VerticalContainer/QuestionsArea/PanelContainer/QuestionsContainer"]
+margin_left = 63.0
+margin_top = 29.0
+margin_right = 232.0
+margin_bottom = 43.0
 text = "This is the Questions Area"
 
 [node name="MarginContainer" type="MarginContainer" parent="VerticalContainer/QuestionsArea"]
-margin_left = 480.0
-margin_right = 640.0
-margin_bottom = 90.0
+margin_left = 465.0
+margin_right = 620.0
+margin_bottom = 87.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VerticalContainer/QuestionsArea/MarginContainer"]
-margin_left = 148.0
-margin_right = 160.0
-margin_bottom = 20.0
-size_flags_horizontal = 8
-size_flags_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tile" type="MarginContainer" parent="VerticalContainer/QuestionsArea/MarginContainer"]
+margin_left = 37.0
+margin_top = 28.0
+margin_right = 117.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="VerticalContainer/QuestionsArea/MarginContainer/Tile"]
+margin_right = 80.0
+margin_bottom = 31.0
+
+[node name="Label" type="Label" parent="VerticalContainer/QuestionsArea/MarginContainer/Tile"]
+margin_right = 80.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Answer
+Normally"
+align = 1
+valign = 1
+autowrap = true
 
 [node name="AnswersArea" type="CenterContainer" parent="VerticalContainer"]
-margin_top = 90.0
-margin_right = 640.0
-margin_bottom = 360.0
+margin_top = 87.0
+margin_right = 620.0
+margin_bottom = 437.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 5.0
+size_flags_stretch_ratio = 4.0
 
-[node name="TileGrid" type="GridContainer" parent="VerticalContainer/AnswersArea"]
-margin_left = 113.0
-margin_top = 24.0
-margin_right = 527.0
-margin_bottom = 246.0
+[node name="PanelContainer" type="PanelContainer" parent="VerticalContainer/AnswersArea"]
+margin_left = 96.0
+margin_top = 57.0
+margin_right = 524.0
+margin_bottom = 293.0
+
+[node name="TileGrid" type="GridContainer" parent="VerticalContainer/AnswersArea/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 421.0
+margin_bottom = 229.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
 columns = 4
 
-[node name="Tile1" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile1" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_right = 96.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile1"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile1"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile1"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile1"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -130,18 +151,18 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile2" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile2" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 106.0
 margin_right = 202.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile2"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile2"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile2"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile2"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -152,18 +173,18 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile3" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile3" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 212.0
 margin_right = 308.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile3"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile3"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile3"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile3"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -174,18 +195,18 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile4" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile4" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 318.0
 margin_right = 414.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile4"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile4"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile4"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile4"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -196,18 +217,18 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile5" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile5" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_top = 58.0
 margin_right = 96.0
 margin_bottom = 106.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile5"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile5"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile5"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile5"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -218,7 +239,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile6" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile6" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 106.0
 margin_top = 58.0
 margin_right = 202.0
@@ -226,11 +247,11 @@ margin_bottom = 106.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile6"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile6"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile6"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile6"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -241,7 +262,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile7" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile7" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 212.0
 margin_top = 58.0
 margin_right = 308.0
@@ -249,11 +270,11 @@ margin_bottom = 106.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile7"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile7"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile7"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile7"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -264,7 +285,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile8" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile8" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 318.0
 margin_top = 58.0
 margin_right = 414.0
@@ -272,11 +293,11 @@ margin_bottom = 106.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile8"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile8"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile8"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile8"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -287,18 +308,18 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile9" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile9" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_top = 116.0
 margin_right = 96.0
 margin_bottom = 164.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile9"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile9"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile9"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile9"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -309,7 +330,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile10" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile10" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 106.0
 margin_top = 116.0
 margin_right = 202.0
@@ -317,11 +338,11 @@ margin_bottom = 164.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile10"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile10"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile10"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile10"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -332,7 +353,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile11" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile11" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 212.0
 margin_top = 116.0
 margin_right = 308.0
@@ -340,11 +361,11 @@ margin_bottom = 164.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile11"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile11"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile11"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile11"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -355,7 +376,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile12" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile12" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 318.0
 margin_top = 116.0
 margin_right = 414.0
@@ -363,11 +384,11 @@ margin_bottom = 164.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile12"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile12"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile12"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile12"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -378,18 +399,18 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile13" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile13" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_top = 174.0
 margin_right = 96.0
 margin_bottom = 222.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile13"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile13"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile13"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile13"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -400,7 +421,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile14" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile14" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 106.0
 margin_top = 174.0
 margin_right = 202.0
@@ -408,11 +429,11 @@ margin_bottom = 222.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile14"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile14"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile14"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile14"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -423,7 +444,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile15" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile15" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 212.0
 margin_top = 174.0
 margin_right = 308.0
@@ -431,11 +452,11 @@ margin_bottom = 222.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile15"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile15"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile15"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile15"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
@@ -446,7 +467,7 @@ valign = 1
 autowrap = true
 clip_text = true
 
-[node name="Tile16" type="MarginContainer" parent="VerticalContainer/AnswersArea/TileGrid"]
+[node name="Tile16" type="MarginContainer" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid"]
 margin_left = 318.0
 margin_top = 174.0
 margin_right = 414.0
@@ -454,11 +475,11 @@ margin_bottom = 222.0
 rect_min_size = Vector2( 96, 48 )
 script = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/TileGrid/Tile16"]
+[node name="Button" type="Button" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile16"]
 margin_right = 96.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/TileGrid/Tile16"]
+[node name="Label" type="Label" parent="VerticalContainer/AnswersArea/PanelContainer/TileGrid/Tile16"]
 margin_right = 96.0
 margin_bottom = 48.0
 size_flags_horizontal = 3

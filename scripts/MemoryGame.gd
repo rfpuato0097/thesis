@@ -1,7 +1,7 @@
 extends Control
 
-onready var questionsArea = $VerticalContainer/QuestionsArea/QuestionsContainer/Questions
-onready var tileGrid = $VerticalContainer/AnswersArea/TileGrid
+onready var questionsArea = $VerticalContainer/QuestionsArea/PanelContainer/QuestionsContainer/Questions
+onready var tileGrid = $VerticalContainer/AnswersArea/PanelContainer/TileGrid
 onready var lobbyInfo = $VerticalContainer/QuestionsArea/LobbyInfoContainer/LobbyInfo
 
 var questions = []
