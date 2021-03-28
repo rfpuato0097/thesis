@@ -8,10 +8,13 @@ var payload = []
 onready var wordsPopup = $AddtlWordsPopup
 onready var savePopup = $SavePopup
 onready var loadPopup = $LoadPopup
+onready var saveButton = $VBoxContainer/Buttons2/SaveButton
+onready var loadButton = $VBoxContainer/Buttons2/LoadButton
 
 func _ready():
-	pass # Replace with function body.
-	
+	if OS.get_name() == "HTML5":
+		saveButton.set_disabled(true)
+		loadButton.set_disabled(true)
 
 func _on_AddQuestionButton_pressed():
 	var q = questionInstance.instance()

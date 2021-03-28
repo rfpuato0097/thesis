@@ -91,7 +91,8 @@ func _ready():
 				analytics_text = analytics_text + "\n    Question: %s\n        Correct Answer: %s\n        Player Answer: %s" % [j["question"], j["answer"], j["player_answer"]]
 			else:
 				analytics_text = analytics_text + "\n    Question: %s\n        Correct Answer: %s\n        Player Answer: %s" % [j["question"], j["answer"], j["player_answer"]]
-		analytics_text = "Score: %d/%d" % [score, question_results.size()] + analytics_text
+		analytics_text = "Game Score: %.1f\n" % [i[0]["player_game_score"]] + analytics_text
+		analytics_text = "Score: %d/%d\n" % [score, question_results.size()] + analytics_text
 		item_instance.content = analytics_text
 		get_node("VBox/ScrollContainer/TabContainer/Players").add_child(item_instance)
 

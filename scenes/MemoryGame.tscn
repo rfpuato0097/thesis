@@ -33,7 +33,7 @@ __meta__ = {
 
 [node name="QuestionsArea" type="HBoxContainer" parent="VerticalContainer"]
 margin_right = 620.0
-margin_bottom = 87.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -43,7 +43,7 @@ __meta__ = {
 
 [node name="LobbyInfoContainer" type="VBoxContainer" parent="VerticalContainer/QuestionsArea"]
 margin_right = 155.0
-margin_bottom = 87.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -55,7 +55,7 @@ text = "This is the lobby info"
 [node name="PanelContainer" type="PanelContainer" parent="VerticalContainer/QuestionsArea"]
 margin_left = 155.0
 margin_right = 465.0
-margin_bottom = 87.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
@@ -63,7 +63,7 @@ size_flags_stretch_ratio = 2.0
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 303.0
-margin_bottom = 80.0
+margin_bottom = 59.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -71,23 +71,23 @@ size_flags_stretch_ratio = 2.0
 
 [node name="Questions" type="Label" parent="VerticalContainer/QuestionsArea/PanelContainer/QuestionsContainer"]
 margin_left = 63.0
-margin_top = 29.0
+margin_top = 19.0
 margin_right = 232.0
-margin_bottom = 43.0
+margin_bottom = 33.0
 text = "This is the Questions Area"
 
 [node name="MarginContainer" type="MarginContainer" parent="VerticalContainer/QuestionsArea"]
 margin_left = 465.0
 margin_right = 620.0
-margin_bottom = 87.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Tile" type="MarginContainer" parent="VerticalContainer/QuestionsArea/MarginContainer"]
 margin_left = 37.0
-margin_top = 28.0
+margin_top = 17.0
 margin_right = 117.0
-margin_bottom = 59.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -108,18 +108,18 @@ valign = 1
 autowrap = true
 
 [node name="AnswersArea" type="CenterContainer" parent="VerticalContainer"]
-margin_top = 87.0
+margin_top = 66.0
 margin_right = 620.0
-margin_bottom = 437.0
+margin_bottom = 330.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 
 [node name="PanelContainer" type="PanelContainer" parent="VerticalContainer/AnswersArea"]
 margin_left = 96.0
-margin_top = 57.0
+margin_top = 14.0
 margin_right = 524.0
-margin_bottom = 293.0
+margin_bottom = 250.0
 
 [node name="TileGrid" type="GridContainer" parent="VerticalContainer/AnswersArea/PanelContainer"]
 margin_left = 7.0
@@ -489,3 +489,175 @@ align = 1
 valign = 1
 autowrap = true
 clip_text = true
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -280.0
+margin_top = -80.0
+margin_right = 280.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileHBox" type="HBoxContainer" parent="PopupPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 556.0
+margin_bottom = 76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tile1" type="MarginContainer" parent="PopupPanel/TileHBox"]
+margin_right = 88.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="PopupPanel/TileHBox/Tile1"]
+margin_right = 88.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="PopupPanel/TileHBox/Tile1"]
+margin_right = 88.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile2" type="MarginContainer" parent="PopupPanel/TileHBox"]
+margin_left = 92.0
+margin_right = 181.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="PopupPanel/TileHBox/Tile2"]
+margin_right = 89.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="PopupPanel/TileHBox/Tile2"]
+margin_right = 89.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile3" type="MarginContainer" parent="PopupPanel/TileHBox"]
+margin_left = 185.0
+margin_right = 273.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="PopupPanel/TileHBox/Tile3"]
+margin_right = 88.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="PopupPanel/TileHBox/Tile3"]
+margin_right = 88.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile4" type="MarginContainer" parent="PopupPanel/TileHBox"]
+margin_left = 277.0
+margin_right = 366.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="PopupPanel/TileHBox/Tile4"]
+margin_right = 89.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="PopupPanel/TileHBox/Tile4"]
+margin_right = 89.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile5" type="MarginContainer" parent="PopupPanel/TileHBox"]
+margin_left = 370.0
+margin_right = 459.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="PopupPanel/TileHBox/Tile5"]
+margin_right = 89.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="PopupPanel/TileHBox/Tile5"]
+margin_right = 89.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Tile6" type="MarginContainer" parent="PopupPanel/TileHBox"]
+margin_left = 463.0
+margin_right = 552.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="PopupPanel/TileHBox/Tile6"]
+margin_right = 89.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="PopupPanel/TileHBox/Tile6"]
+margin_right = 89.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "TESTING"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+[connection signal="pressed" from="VerticalContainer/QuestionsArea/MarginContainer/Tile/Button" to="." method="_on_Button_pressed"]

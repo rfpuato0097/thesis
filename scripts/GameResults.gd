@@ -1,6 +1,6 @@
 extends Control
 
-var score = Client.score
+var score = Client.game_score
 var total = Client.total
 var correct_questions = Client.correct_questions.duplicate(true)
 var wrong_questions = Client.wrong_questions.duplicate(true)
@@ -14,7 +14,7 @@ onready var correctQuestions = $VBoxContainer/HBoxContainer/CorrectQuestionsCont
 onready var wrongQuestions = $VBoxContainer/HBoxContainer/WrongQuestionsContainer/WrongQuestions
 
 func _ready():
-	gameResults.text = "Score: %d/%d" % [score,total]
+	gameResults.text = "Score: %.1f/%d" % [score,total]
 	
 	for c in correct_questions:
 		for q in questions:

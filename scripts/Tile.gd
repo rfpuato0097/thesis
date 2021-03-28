@@ -13,9 +13,9 @@ func _ready():
 	
 	buttonNode.connect("pressed", self, "_button_pressed")
 	buttonNode.set_toggle_mode(true)
-	labelNode.set_text("HELLO")
+	labelNode.set_text("READY")
 	
-	MemoryGame = get_node("../../../..")
+	MemoryGame = get_tree().get_root().get_node("MemoryGame")
 
 func showTile():
 	labelNode.set_text(text)

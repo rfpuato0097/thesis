@@ -3,6 +3,8 @@ extends Control
 onready var questionsArea = $VerticalContainer/QuestionsArea/PanelContainer/QuestionsContainer/Questions
 onready var tileGrid = $VerticalContainer/AnswersArea/PanelContainer/TileGrid
 onready var lobbyInfo = $VerticalContainer/QuestionsArea/LobbyInfoContainer/LobbyInfo
+onready var popup = $PopupPanel
+onready var tileHbox = $PopupPanel/TileHBox
 
 var questions = []
 var questionTotal
@@ -17,15 +19,18 @@ var timer
 var displayTimer = true
 var rng = RandomNumberGenerator.new()
 var tiles
+var tiles2
 var clickedTile
 var playerAnswer
-var playerScore = 0
+var playerScore = 0.0
+var halfPoint = false
 var playerName
 var correctQuestions = []
 var wrongQuestions = []
 
 func _ready():
 	tiles = tileGrid.get_children()
+	tiles2 = tileHbox.get_children()
 	#Receive Data from Server
 	questions = Client.questions
 	words = Client.words
@@ -55,9 +60,17 @@ func _process(delta):
 		for tile in tiles:
 			if clickedTile != tile:
 				tile.buttonNode.set_pressed(false)
+			else:
+				halfPoint = false
+		for tile in tiles2:
+			if clickedTile != tile:
+				tile.buttonNode.set_pressed(false)
+			else:
+				halfPoint = true
+		
 
 	#Display to lobby info.
-	lobbyInfo.set_text( "Player Name: %s\nPlayer Score: %d/%d" % [playerName, playerScore, questionTotal] )
+	lobbyInfo.set_text( "Player Name: %s\nPlayer Score: %.1f/%d" % [playerName, playerScore, questionTotal] )
 
 
 func gameTimer(secs, method, oneShot=true):
@@ -77,7 +90,7 @@ func _question_start():
 	else:
 		#Game End
 		#Send result to server here.
-		Client.send_data(["GR", playerName, correctQuestions, wrongQuestions])
+		Client.send_data(["GR", playerName, correctQuestions, wrongQuestions, playerScore])
 		pass
 
 func pickQuestion():
@@ -112,8 +125,13 @@ func prepareTiles():
 		#print(tiles)
 	#print("\nTILES\n")
 	
+	print(wordsInTiles)
+	var count = 0
+	for tile in tiles2:
+		tile.text = wordsInTiles[count]
+		count = count + 1
 	
-	for tile in tiles:
+	for tile in tiles + tiles2:
 		tile.buttonNode.set_disabled(true)
 		tile.buttonNode.set_pressed(false)
 
@@ -136,6 +154,9 @@ func flipTiles():
 		else:
 			tile.hideTile()
 
+	for tile in tiles2:
+		tile.showTile()
+
 func memorizePhase():
 	print("memorizePhase")
 	displayTimer = false
@@ -145,7 +166,7 @@ func memorizePhase():
 
 func answerPhase():
 	print("answerPhase")
-	for tile in tiles:
+	for tile in tiles + tiles2:
 		tile.buttonNode.set_disabled(false)
 	questionsArea.set_text(question)
 	gameTimer(5, "resultPhase")
@@ -162,10 +183,17 @@ func resultPhase():
 		playerAnswer = clickedTile.text
 	if playerAnswer == answer:
 		print("Correct")
-		playerScore = playerScore + 1
+		if halfPoint:
+			playerScore = playerScore + 0.5
+		else:
+			playerScore = playerScore + 1
 		correctQuestions.append( {"question":question, "player_answer": playerAnswer} )
 		#correctQuestions.append(question)
 	else:
 		print("Wrong")
 		wrongQuestions.append( {"question":question, "player_answer": playerAnswer} )
 	gameTimer(2, "_question_start")
+
+
+func _on_Button_pressed():
+	popup.popup()

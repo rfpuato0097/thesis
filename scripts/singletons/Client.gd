@@ -15,6 +15,9 @@ var total
 var correct_questions
 var wrong_questions
 var questions_for_gr
+var game_score
+var error_message = ""
+var throw_error = false
 
 #analytics
 var player_count
@@ -55,8 +58,18 @@ func _client_received():
 		lobby_id = received[1]
 		lobby_name = str(lobby_id) + received[2]
 		evaluation_page = str(lobby_id) + received[3]
-		created_lobbies.append([lobby_id, lobby_name, evaluation_page])
-		#save lobbies into resource
+		
+		#IF OS not HTML5
+		if OS.get_name() != "HTML5":
+			var save_lobbies = File.new()
+			if save_lobbies.file_exists("res://lobbies.save"):
+				save_lobbies.open("res://lobbies.save", File.READ)
+				created_lobbies = parse_json(save_lobbies.get_line())
+				save_lobbies.close()
+			save_lobbies.open("res://lobbies.save", File.WRITE)
+			created_lobbies.append([lobby_id, lobby_name, evaluation_page])
+			save_lobbies.store_line(to_json(created_lobbies))
+			save_lobbies.close()
 		
 		get_tree().change_scene("res://scenes/LobbyCode.tscn")
 	
@@ -79,6 +92,7 @@ func _client_received():
 		correct_questions = received[3]
 		wrong_questions = received[4]
 		questions_for_gr = received[5]
+		game_score = received[6]
 		
 		get_tree().change_scene("res://scenes/GameResults.tscn")
 		
@@ -87,7 +101,12 @@ func _client_received():
 		lobby_name = received[2]
 		evaluation_page = received[3]
 		
+		
 		player_count = analytics[0][0]["player_count"]
+		if player_count == 0:
+			error_message = "Empty Evaluation Page!\nNo one has played the game. Try again later."
+			throw_error = true
+			return
 		average_score = analytics[1][0]["average"]
 		difficult_questions = analytics[2]
 		students_low = analytics[3]
@@ -97,6 +116,10 @@ func _client_received():
 		questions_resutls = analytics[7]
 		
 		get_tree().change_scene("res://scenes/Evaluation.tscn")
+		
+	if received[0] == "ER":
+		error_message = received[1]
+		throw_error = true
 
 func _exit_tree():
 	_client.disconnect_from_host(1001, "Bye bye!")
