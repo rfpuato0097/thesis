@@ -22,6 +22,8 @@ _global_script_class_icons={
 
 config/name="Mindgames"
 run/main_scene="res://scenes/MainMenu.tscn"
+config/icon="res://theme/assets/mg_icon2.png"
+config/windows_native_icon="res://theme/assets/mg_icon.ico"
 
 [autoload]
 

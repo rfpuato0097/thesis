@@ -70,7 +70,7 @@ func _process(delta):
 		
 
 	#Display to lobby info.
-	lobbyInfo.set_text( "Player Name: %s\nPlayer Score: %.1f/%d" % [playerName, playerScore, questionTotal] )
+	lobbyInfo.set_text( "Player Name: %s\nPlayer Score: %.1f/%d.0" % [playerName, playerScore, questionTotal] )
 
 
 func gameTimer(secs, method, oneShot=true):

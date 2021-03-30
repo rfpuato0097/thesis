@@ -14,7 +14,7 @@ onready var correctQuestions = $VBoxContainer/PanelContainer/HBoxContainer/Panel
 onready var wrongQuestions = $VBoxContainer/PanelContainer/HBoxContainer/PanelContainer2/WrongQuestionsContainer/WrongQuestions
 
 func _ready():
-	gameResults.text = "Score: %.1f/%d" % [score,total]
+	gameResults.text = "Score: %.1f/%d.0" % [score,total]
 	
 	for c in correct_questions:
 		for q in questions:

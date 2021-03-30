@@ -299,6 +299,7 @@ __meta__ = {
 }
 
 [node name="InfoPopup" type="WindowDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -320,9 +321,11 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
-text = "Mind Games: A Game-based Learning Platform with Analytics.
+text = "Mind Games: A Game-based Learning Platform with Analytics. Made with the Godot Game Engine
 
-Assets: Iosevka Font by be5invis,  Space Backgrounds by norma-2d."
+Assets: Iosevka Font by be5invis, Space Backgrounds by norma-2d.
+
+Contact Us: mindgames.team@protonmail.com"
 align = 1
 valign = 1
 autowrap = true
