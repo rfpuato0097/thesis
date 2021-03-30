@@ -63,11 +63,11 @@ func _client_received():
 		#IF OS not HTML5
 		if OS.get_name() != "HTML5":
 			var save_lobbies = File.new()
-			if save_lobbies.file_exists("res://lobbies.save"):
-				save_lobbies.open("res://lobbies.save", File.READ)
+			if save_lobbies.file_exists("user://lobbies.save"):
+				save_lobbies.open("user://lobbies.save", File.READ)
 				created_lobbies = parse_json(save_lobbies.get_line())
 				save_lobbies.close()
-			save_lobbies.open("res://lobbies.save", File.WRITE)
+			save_lobbies.open("user://lobbies.save", File.WRITE)
 			created_lobbies.append([lobby_id, lobby_name, evaluation_page])
 			save_lobbies.store_line(to_json(created_lobbies))
 			save_lobbies.close()
