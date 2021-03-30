@@ -1,19 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/Evaluation.gd" type="Script" id=1]
+[ext_resource path="res://theme/assets/PurpleSpace.png" type="Texture" id=2]
+[ext_resource path="res://theme/EvaluationPageTheme.tres" type="Theme" id=3]
 
 [node name="Evaluation" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.164706, 0.286275, 0.309804, 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -30,23 +33,23 @@ __meta__ = {
 }
 
 [node name="Return" type="Button" parent="VBox"]
-margin_left = 537.0
+margin_left = 554.0
 margin_right = 620.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 size_flags_horizontal = 12
 text = "Main Menu"
 
 [node name="TitlePage" type="Label" parent="VBox"]
-margin_top = 24.0
+margin_top = 26.0
 margin_right = 620.0
-margin_bottom = 38.0
+margin_bottom = 42.0
 text = "Evaluation"
 align = 1
 
 [node name="Codes" type="Label" parent="VBox"]
-margin_top = 42.0
+margin_top = 46.0
 margin_right = 620.0
-margin_bottom = 73.0
+margin_bottom = 81.0
 text = "Evaluation Page Code: C3301
 Lobby Code: ZETA7 "
 align = 2
@@ -55,14 +58,14 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
-margin_top = 77.0
+margin_top = 85.0
 margin_right = 620.0
 margin_bottom = 340.0
 size_flags_vertical = 3
 
 [node name="TabContainer" type="TabContainer" parent="VBox/ScrollContainer"]
 margin_right = 620.0
-margin_bottom = 263.0
+margin_bottom = 255.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -70,7 +73,7 @@ size_flags_vertical = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 34.0
 margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
@@ -78,26 +81,26 @@ size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="VBox/ScrollContainer/TabContainer/GameSummary"]
 margin_right = 612.0
-margin_bottom = 28.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="Content" type="Label" parent="VBox/ScrollContainer/TabContainer/GameSummary/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 605.0
-margin_bottom = 21.0
+margin_bottom = 23.0
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBox/ScrollContainer/TabContainer/GameSummary"]
-margin_top = 32.0
+margin_top = 34.0
 margin_right = 612.0
-margin_bottom = 60.0
+margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="Content" type="Label" parent="VBox/ScrollContainer/TabContainer/GameSummary/PanelContainer2"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 605.0
-margin_bottom = 21.0
+margin_bottom = 23.0
 
 [node name="Players" type="VBoxContainer" parent="VBox/ScrollContainer/TabContainer"]
 visible = false

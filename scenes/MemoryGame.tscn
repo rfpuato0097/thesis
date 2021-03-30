@@ -1,20 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/MemoryGame.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Tile.gd" type="Script" id=2]
+[ext_resource path="res://theme/assets/PurpleSpace.png" type="Texture" id=3]
+[ext_resource path="res://theme/MemoryGameTheme.tres" type="Theme" id=4]
 
 [node name="MemoryGame" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.623529, 0.0156863, 0.0156863, 1 )
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,8 +52,9 @@ size_flags_vertical = 3
 
 [node name="LobbyInfo" type="Label" parent="VerticalContainer/QuestionsArea/LobbyInfoContainer"]
 margin_right = 155.0
-margin_bottom = 14.0
+margin_bottom = 16.0
 text = "This is the lobby info"
+autowrap = true
 
 [node name="PanelContainer" type="PanelContainer" parent="VerticalContainer/QuestionsArea"]
 margin_left = 155.0
@@ -59,22 +63,17 @@ margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="QuestionsContainer" type="CenterContainer" parent="VerticalContainer/QuestionsArea/PanelContainer"]
+[node name="Questions" type="Label" parent="VerticalContainer/QuestionsArea/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 303.0
 margin_bottom = 59.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="Questions" type="Label" parent="VerticalContainer/QuestionsArea/PanelContainer/QuestionsContainer"]
-margin_left = 63.0
-margin_top = 19.0
-margin_right = 232.0
-margin_bottom = 33.0
+size_flags_vertical = 1
 text = "This is the Questions Area"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VerticalContainer/QuestionsArea"]
 margin_left = 465.0
@@ -85,20 +84,20 @@ size_flags_vertical = 3
 
 [node name="Tile" type="MarginContainer" parent="VerticalContainer/QuestionsArea/MarginContainer"]
 margin_left = 37.0
-margin_top = 17.0
+margin_top = 15.0
 margin_right = 117.0
-margin_bottom = 48.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Button" type="Button" parent="VerticalContainer/QuestionsArea/MarginContainer/Tile"]
 margin_right = 80.0
-margin_bottom = 31.0
+margin_bottom = 35.0
 
 [node name="Label" type="Label" parent="VerticalContainer/QuestionsArea/MarginContainer/Tile"]
 margin_right = 80.0
-margin_bottom = 31.0
+margin_bottom = 35.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Answer

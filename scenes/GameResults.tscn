@@ -1,19 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/GameResults.gd" type="Script" id=1]
+[ext_resource path="res://theme/assets/PurpleSpace.png" type="Texture" id=2]
+[ext_resource path="res://theme/GameResultsTheme.tres" type="Theme" id=3]
 
 [node name="GameResults" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.196078, 0.054902, 0.2, 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -30,49 +33,72 @@ __meta__ = {
 }
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
-margin_left = 537.0
+margin_left = 554.0
 margin_right = 620.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 size_flags_horizontal = 8
 text = "Main Menu"
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_top = 24.0
+margin_top = 26.0
 margin_right = 620.0
-margin_bottom = 38.0
+margin_bottom = 42.0
 text = "Game Results:"
 
 [node name="GameResults" type="Label" parent="VBoxContainer"]
-margin_top = 42.0
+margin_top = 46.0
 margin_right = 620.0
-margin_bottom = 100.0
+margin_bottom = 104.0
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.25
+text = "RESULTS HERE"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 104.0
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 108.0
 margin_right = 620.0
 margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 613.0
+margin_bottom = 225.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="CorrectQuestionsContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 305.0
-margin_bottom = 236.0
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_right = 298.0
+margin_bottom = 218.0
+size_flags_horizontal = 3
+
+[node name="CorrectQuestionsContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 291.0
+margin_bottom = 211.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CorrectQuestions" type="Label" parent="VBoxContainer/HBoxContainer/CorrectQuestionsContainer"]
-margin_bottom = 14.0
+[node name="CorrectQuestions" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/PanelContainer/CorrectQuestionsContainer"]
+margin_bottom = 16.0
 
-[node name="WrongQuestionsContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 315.0
-margin_right = 620.0
-margin_bottom = 236.0
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 308.0
+margin_right = 606.0
+margin_bottom = 218.0
+size_flags_horizontal = 3
+
+[node name="WrongQuestionsContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/PanelContainer2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 291.0
+margin_bottom = 211.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="WrongQuestions" type="Label" parent="VBoxContainer/HBoxContainer/WrongQuestionsContainer"]
-margin_bottom = 14.0
+[node name="WrongQuestions" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/PanelContainer2/WrongQuestionsContainer"]
+margin_bottom = 16.0
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]

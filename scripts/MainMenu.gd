@@ -1,17 +1,19 @@
 extends Control
 
 var created_lobbies = []
+var music_player
 
 onready var joinPopup = $JoinGamePopup
 onready var CheckPopup = $CheckGamePopup
 onready var errorPopup = $ErrorPopup
-onready var exitButton = $Container/TitleContainer/Exit
+onready var infoPopup = $InfoPopup
+onready var exitButton = $Container/MenuContainer/Exit
 onready var lobbyList = $CheckGamePopup/VBoxContainer/ScrollContainer
 
 func _ready():
 	var save_lobbies = File.new()
-	if save_lobbies.file_exists("res://lobbies.save"):
-		save_lobbies.open("res://lobbies.save", File.READ)
+	if save_lobbies.file_exists("user://lobbies.save"):
+		save_lobbies.open("user://lobbies.save", File.READ)
 		created_lobbies = parse_json(save_lobbies.get_line())
 		save_lobbies.close()
 		
@@ -21,9 +23,10 @@ func _ready():
 	if OS.get_name() == "HTML5":
 		exitButton.hide()
 		lobbyList.hide()
-		CheckPopup.rect_size = Vector2(144,80)
+		#CheckPopup.rect_size = Vector2(200,100)
 		CheckPopup.margin_top = -50
 		CheckPopup.margin_bottom = 50
+		CheckPopup.rect_size = Vector2(144,115)
 		
 func _process(delta):
 	if Client.throw_error == true:
@@ -46,3 +49,7 @@ func _on_CheckGameButton_pressed():
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+
+func _on_InfoButton_pressed():
+	infoPopup.popup()

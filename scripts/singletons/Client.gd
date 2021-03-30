@@ -38,6 +38,7 @@ func _init():
 	
 	connect_to_url("ws://127.0.0.1:9080")
 	
+	
 func _client_connected(protocol):
 	Utils._log("Client just connected with protocol: %s" % [protocol])
 	_client.get_peer(1).set_write_mode(_write_mode)
