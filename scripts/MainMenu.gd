@@ -9,6 +9,7 @@ onready var errorPopup = $ErrorPopup
 onready var infoPopup = $InfoPopup
 onready var exitButton = $Container/MenuContainer/Exit
 onready var lobbyList = $CheckGamePopup/VBoxContainer/ScrollContainer
+onready var connectedLabel = $Container/MenuContainer/Infos/connected
 
 func _ready():
 	if OS.get_name() != "HTML5":
@@ -34,6 +35,11 @@ func _process(delta):
 		errorPopup.get_node("ErrorMessage").text = Client.error_message
 		errorPopup.popup()
 		Client.throw_error = false
+	
+	if Client.connected == true:
+		connectedLabel.text = "Connected to Server!"
+	else:
+		connectedLabel.text = "Not Connected to Server..."
 
 func _on_CreateGameButton_pressed():
 	print("Create Game Pressed")

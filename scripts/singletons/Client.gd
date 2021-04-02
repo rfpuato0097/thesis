@@ -1,5 +1,9 @@
 extends Node
 
+const IP_ADDRESS = "mindgames.southeastasia.cloudapp.azure.com"
+const PORT = 443
+var server_url = "wss://%s:%d" % [IP_ADDRESS, PORT]
+
 var _client = WebSocketClient.new()
 var _write_mode = WebSocketPeer.WRITE_MODE_BINARY
 
@@ -18,6 +22,7 @@ var questions_for_gr
 var game_score
 var error_message = ""
 var throw_error = false
+var connected = false
 
 #analytics
 var player_count
@@ -36,18 +41,22 @@ func _init():
 	_client.connect("server_close_request", self, "_client_close_request")
 	_client.connect("data_received", self, "_client_received")
 	
-	connect_to_url("ws://127.0.0.1:9080")
-	
+	#connect_to_url("ws://127.0.0.1:11100")
+	connect_to_url(server_url)
 	
 func _client_connected(protocol):
 	Utils._log("Client just connected with protocol: %s" % [protocol])
 	_client.get_peer(1).set_write_mode(_write_mode)
+	connected = true
 	
 func _client_disconnected(clean=true):
 	Utils._log("Client just disconnected. Was clean: %s" % clean)
+	connected = false
+	#connect_to_url(server_url)
 	
 func _client_close_request(code,reason):
 	Utils._log("Close code: %d, reason: %s" % [code, reason])
+	connected = false
 	
 func _client_received():
 	var packet = _client.get_peer(1).get_packet()

@@ -9,5 +9,5 @@ func decode_data(data):
 
 
 func _log(msg):
-	#print(msg)
-	pass
+	print(msg)
+
