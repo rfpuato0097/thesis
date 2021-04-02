@@ -52,7 +52,7 @@ func _client_connected(protocol):
 func _client_disconnected(clean=true):
 	Utils._log("Client just disconnected. Was clean: %s" % clean)
 	connected = false
-	#connect_to_url(server_url)
+	connect_to_url(server_url)
 	
 func _client_close_request(code,reason):
 	Utils._log("Close code: %d, reason: %s" % [code, reason])
